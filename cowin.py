@@ -16,7 +16,7 @@ def fetch_slots(date_str, state_like='Karnataka', district_like='Bangalore'):
     if states_resp.status_code == 200:
         states_resp.json()['states']
         state_id = next((state['state_id'] for state in states_resp.json()[
-                        'states'] if state_like.lower() in state['state_name'].lower()), '')
+            'states'] if state_like.lower() in state['state_name'].lower()), '')
 
         districts_resp = requests.get(
             'https://cdn-api.co-vin.in/api/v2/admin/location/districts/{}'.format(state_id))
@@ -57,7 +57,7 @@ def fetch_slots(date_str, state_like='Karnataka', district_like='Bangalore'):
         else:
             print("Error {}".format(resp.status_code))
     if len(final) > 0:
-        file_name = 'available_slots_{}_{}.csv'.format(
+        file_name = 'available_slots_{}_{}_{}.csv'.format(
             state_like, district_like, date_str)
 
         final = final[final['available_capacity'] > 0]
