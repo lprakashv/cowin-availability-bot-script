@@ -20,7 +20,7 @@ def get_districts(state_like, districts_like):
             'https://cdn-api.co-vin.in/api/v2/admin/location/districts/{}'.format(state_id))
         if districts_resp.status_code == 200:
             for district in districts_resp.json()['districts']:
-                if districts_like and any([dl.lower() in district['district_name'].lower() for dl in districts_like]):
+                if len(districts_like) == 0 or districts_like and any([dl.lower() in district['district_name'].lower() for dl in districts_like]):
                     district_ids.append(district['district_id'])
                     district_names.append(district['district_name'])
         else:

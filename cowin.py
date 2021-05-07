@@ -13,7 +13,7 @@ from cowin_data_utils import (create_final_data_frame_for_centers,
 from telegram_api import send_to_telegram
 
 
-def fetch_and_dump_slots(date_str, state_like, districts_like=None):
+def fetch_and_dump_slots(date_str, state_like, districts_like):
     try:
         districts_data = get_districts(state_like, districts_like)
         district_ids = districts_data['district_ids']

@@ -21,14 +21,14 @@ def send_to_telegram(state_name, district_names, date_str, file_name, df):
         file = open(file_name, 'rb')
 
         for chat_id in chat_ids:
-            # sendresp = requests.post('https://api.telegram.org/bot{}/sendDocument'.format(token),
-            #                          data={'chat_id': chat_id}, files={'document': file})
-            # if sendresp.ok:
-            #     print(
-            #         'Successfully sent document {} to Telegram group!'.format(file_name))
-            # else:
-            #     print(
-            #         'Failed to send document {} to Telegram group! - {}'.foramt(file_name, sendresp.content))
+            sendresp = requests.post('https://api.telegram.org/bot{}/sendDocument'.format(token),
+                                     data={'chat_id': chat_id}, files={'document': file})
+            if sendresp.ok:
+                print(
+                    'Successfully sent document {} to Telegram group!'.format(file_name))
+            else:
+                print(
+                    'Failed to send document {} to Telegram group! - {}'.foramt(file_name, sendresp.content))
 
             sendresp = requests.post('https://api.telegram.org/bot{}/sendMessage'.format(
                 token), data={'chat_id': chat_id, 'text': summary, 'parse_mode': 'MarkdownV2'})
